@@ -8,3 +8,14 @@ body {
   padding: 1em;
 }
 
+nav {
+  display: flex;
+  
+  ul, li {
+      display: contents;
+  }
+
+  a {
+    flex: 1;
+  }
+}
