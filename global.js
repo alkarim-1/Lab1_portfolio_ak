@@ -16,7 +16,10 @@ let pages = [
 	{url: "https://github.com/alkarim-1", title: "GitHub"},
 ];
 
-const ARE_WE_HOME = document.documentElement.classList.contains("home");
+const BASE_PATH =
+    location.hostname === "localhost" || location.hostname === "127.0.0.1"
+        ? "/"
+        : "/Lab1_portfolio_ak/";
 
 for (let p of pages) {
 	let url = p.url;
@@ -24,8 +27,9 @@ for (let p of pages) {
 	let a = document.createElement("a");
 
   a.textContent = title;
-	url = ARE_WE_HOME && !url.startsWith("http") ? p.url : "../" + p.url;
-	a.href = url;
+
+  url = !url.startsWith("http") ? BASE_PATH + url : url;
+  a.href = url;
 
 	if (a.host !== location.host) {
 		a.target = "_blank";
