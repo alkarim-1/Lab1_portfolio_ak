@@ -13,7 +13,7 @@ let pages = [
 	{url: "projects/", title: "Projects"},
 	{url: "Resume/", title: "CV"},
 	{url: "contact/", title: "Contact"},
-	{url: "https://alkarim-1.github.io/Lab1_portfolio_ak/", title: "GitHub"},
+	{url: "https://github.com/alkarim-1", title: "GitHub"},
 ];
 
 const ARE_WE_HOME = document.documentElement.classList.contains("home");
