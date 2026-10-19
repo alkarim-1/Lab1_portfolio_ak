@@ -52,7 +52,7 @@ nav {
     }
 
     &:hover {
-			background-color: oklch(from var(--color-accent) 95% 5% h);
+			background-color: color-mix(in oklch, var(--color-accent) 15%,Canvas);
 			border-bottom: .4em solid var(--color-accent);
 			padding-bottom: .1em;
 		}
