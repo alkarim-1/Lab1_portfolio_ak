@@ -63,4 +63,11 @@ select.addEventListener("input", event => {
 function setColorScheme (colorScheme) {
 	select.value = colorScheme;
 	document.documentElement.style.setProperty("color-scheme", colorScheme);
+
+	localStorage.colorScheme = colorScheme;
+}
+
+// Step 4.5 (2)
+if (localStorage.colorScheme) {
+	setColorScheme(localStorage.colorScheme);
 }
