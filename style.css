@@ -121,13 +121,12 @@ form {
 .Resume article {
     margin-bottom: 2em;
     padding: 1em;
-
     background-color: color-mix(
         in oklch,
         var(--color-accent) 10%,
-        Canvas
+        Canvas 90%
     );
-
+    color: CanvasText;
     border-left: 3px solid var(--color-accent);
 }
 
