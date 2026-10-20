@@ -63,6 +63,14 @@ input, textarea, button {
 	font: inherit;
 }
 
+.color-scheme {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 1rem;
+	font-size: 80%;
+}
+
 form {
 	display: grid;
 	grid-template-columns: auto 1fr;
