@@ -71,3 +71,15 @@ function setColorScheme (colorScheme) {
 if (localStorage.colorScheme) {
 	setColorScheme(localStorage.colorScheme);
 }
+
+let form = document.querySelector("form");
+form?.addEventListener("submit", evt => {
+	evt.preventDefault();
+	let data = new FormData(form);
+	let params = [];
+	for (let [name, value] of data) {
+		params.push(name + "=" + encodeURIComponent(value));
+	}
+	let url = form.action + "?" + params.join("&");
+	location.href = url;
+});
