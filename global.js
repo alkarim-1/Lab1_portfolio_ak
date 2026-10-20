@@ -54,3 +54,13 @@ document.body.insertAdjacentHTML("afterbegin", `
 		</select>
 	</label>
 `);
+
+let select = document.querySelector("select");
+select.addEventListener("input", event => {
+	setColorScheme(event.target.value);
+});
+
+function setColorScheme (colorScheme) {
+	select.value = colorScheme;
+	document.documentElement.style.setProperty("color-scheme", colorScheme);
+}
