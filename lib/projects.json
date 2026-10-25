@@ -1,1 +1,62 @@
-
+[
+  {
+    "title": "Project 2: Persuasive or Deceptive Visualization?",
+    "image": "../images/for.png",
+    "description": "This project explores how different data visualization techniques can present opposing arguments using the same greenhouse gas emissions dataset from 1990 to 2023."
+  },
+  {
+    "title": "Quos neque obcaecati suscipit?",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Quod cum dolores aspernatur mollitia, illo voluptas corporis, maxime necessitatibus nisi velit odio dignissimos. Architecto quisquam totam mollitia eligendi! Velit voluptatem deserunt excepturi architecto maxime quam veniam ratione autem molestias."
+  },
+  {
+    "title": "Excepturi asperiores ex porro!",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Iusto aperiam corrupti quis laudantium voluptate! Eligendi dolor iusto, dolorem minus voluptatum ducimus magnam quaerat in aspernatur fuga laboriosam quibusdam corporis hic unde quia corrupti, reiciendis totam consequuntur perspiciatis facere!"
+  },
+  {
+    "title": "Atque fuga quaerat sit!",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Cupiditate omnis odio illo, temporibus inventore magnam mollitia soluta iure veritatis. Fugit impedit totam itaque nihil voluptatum error ullam consequatur adipisci. Officia magni doloremque harum accusantium. Laborum vero quos officiis."
+  },
+  {
+    "title": "Rerum consequuntur deleniti minima?",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Obcaecati officia exercitationem sit aliquam, placeat provident reiciendis eveniet libero consectetur officiis quam dicta itaque alias veniam sapiente non atque ex quo, totam nisi voluptate minima consequatur. Facilis, quo dolorum!"
+  },
+  {
+    "title": "Ipsum praesentium magnam cum.",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Similique eaque odio quidem debitis incidunt, eos obcaecati ullam repellendus aliquam, adipisci, suscipit maxime quia praesentium delectus et. Eligendi magni saepe animi sunt veritatis! Qui ad expedita asperiores doloribus! Distinctio!"
+  },
+  {
+    "title": "Natus fuga numquam consequatur?",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "A sunt rem harum reprehenderit expedita unde officiis omnis deleniti quam possimus culpa minima dicta soluta tempora suscipit odit quasi eos, dignissimos sit, sapiente nostrum fuga nobis. Ut, quaerat voluptas?"
+  },
+  {
+    "title": "Non voluptate quasi tempore.",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Illo, similique laudantium facere quisquam consequuntur modi blanditiis. Incidunt quae iste, quod delectus praesentium aspernatur nemo dolorum aperiam blanditiis harum nostrum voluptatibus recusandae numquam! Aliquam nihil inventore soluta voluptate sunt."
+  },
+  {
+    "title": "Odit repellendus sit minima.",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Quod obcaecati ipsa sapiente vel odio suscipit quos totam ducimus id delectus saepe nihil minus et dolorem veritatis dolores, consectetur tenetur neque ipsum. Eaque inventore quis eius perferendis, totam minus."
+  },
+  {
+    "title": "Eum, aperiam provident. Voluptates.",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Id eum consequuntur exercitationem in, repellat quas labore, optio temporibus totam reiciendis ipsam, laboriosam atque? Non, iure dignissimos reiciendis, consectetur praesentium repellendus, nam excepturi natus rerum itaque eveniet illum optio!"
+  },
+  {
+    "title": "Provident magnam sapiente quo.",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Porro, incidunt? Suscipit ducimus exercitationem blanditiis consequatur unde, modi quam deleniti accusamus ratione laborum ut perspiciatis aliquam culpa corrupti facilis! Cum deleniti voluptatum perferendis. Sunt minima numquam ipsum vero labore!"
+  },
+  {
+    "title": "Adipisci, ipsa? Consectetur, ea.",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Incidunt aspernatur quo ut quaerat ex explicabo distinctio dolores, corrupti magnam tempora vero, nesciunt libero! Sunt accusantium cupiditate laudantium, quas nesciunt similique modi voluptatem omnis tenetur aliquid porro? Exercitationem, dicta!"
+  }
+]
