@@ -147,3 +147,17 @@ form {
     color: gray;
     font-size: 0.9em;
 }
+
+/*Resizing for my project 2 article*/
+.projects article {
+    min-width: 0;
+}
+
+.projects article img {
+    width: 100%;
+    max-width: 100%;
+    height: 140px;
+    object-fit: contain;
+    display: block;
+    background: white;
+}
