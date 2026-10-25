@@ -84,6 +84,7 @@ form?.addEventListener("submit", evt => {
 	location.href = url;
 });
 
+// Lab 4 start
 export async function fetchJSON(url) {
   try {
     // Fetch the JSON file from the given URL
@@ -101,3 +102,42 @@ export async function fetchJSON(url) {
     console.error('Error fetching or parsing JSON data:', error);
   }
 }
+
+export function renderProjects(projects, containerElement, headingLevel='h2') {
+
+	// ensure containerElement is a valid DOM
+	if (!(containerElement instanceof HTMLElement)) {
+		console.error('Invalid container element provided.');
+		return;
+	}
+
+	// validate headingLevel to prevent non-heading tags
+    const validHeadings = ['h1', 'h2', 'h3', 'h4', 'h5'];
+    if (!validHeadings.includes(headingLevel)) {
+        headingLevel = 'h2';
+    }
+
+	// clear existing container
+	containerElement.innerHTML = '';
+
+	projects.forEach(project => {
+		// check if project is valid object
+		if (!project || typeof project !== 'object') {
+			console.error('Invalid project:', project);
+			return;
+		}
+
+		// create article for each project dynamically
+		const article = document.createElement('article');
+		
+		article.innerHTML = `
+			<${headingLevel}>${project.title}</${headingLevel}>
+			<img src="${project.image}" alt="${project.title}">
+			<p>${project.description}</p>
+		`;
+
+		console.log(project)
+		containerElement.appendChild(article);
+	});
+}
+
