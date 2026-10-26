@@ -4,6 +4,7 @@ const projects = await fetchJSON('../lib/projects.json');
 
 const projectsContainer = document.querySelector('.projects');
 const projectsTitle = document.querySelector('.projects-title');
+projectsTitle.textContent = `${projects.length} Projects`;
 
 if (!projectsContainer) {
     console.error("Projects container not found.");
