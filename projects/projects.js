@@ -12,3 +12,10 @@ if (!projectsContainer) {
 }
 
 renderProjects(projects, projectsContainer, 'h2');
+
+// Count projects dynamically
+const projectsTitle = document.querySelector('.projects-title');
+
+if (projectsTitle && Array.isArray(projects)) {
+    projectsTitle.textContent = `My Projects (${projects.length})`;
+}
