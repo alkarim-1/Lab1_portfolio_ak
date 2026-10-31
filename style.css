@@ -258,3 +258,14 @@ form {
         align-self: center;
     }
 }
+
+/* Lab 5: Project Search Bar */
+.searchBar {
+    display: block;
+    width: 100%;
+    padding: 0.75em 1em;
+    margin-bottom: 2em;
+    border: 1px solid gray;
+    border-radius: 0.5em;
+    font: inherit;
+}
