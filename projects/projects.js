@@ -78,3 +78,22 @@ data.forEach((d, idx) => {
             ${d.label} <em>(${d.value})</em>
         `);
 });
+
+// Lab 5 - Step 4.2: Basic Search Functionality
+
+let query = '';
+
+let searchInput = document.querySelector('.searchBar');
+
+searchInput.addEventListener('input', (event) => {
+    // Get the text entered into the search bar
+    query = event.target.value;
+
+    // Filter projects based on their titles
+    let filteredProjects = projects.filter((project) =>
+        project.title.toLowerCase().includes(query.toLowerCase())
+    );
+
+    // Display only the matching projects
+    renderProjects(filteredProjects, projectsContainer, 'h2');
+});
