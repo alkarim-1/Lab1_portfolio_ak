@@ -156,3 +156,9 @@ searchInput.addEventListener('input', (event) => {
     // Update chart and legend to reflect search results
     renderPieChart(getFilteredProjects());
 });
+
+// Lab 5 - Step 5.4: Extra Credit
+// The issue was that the search bar and pie chart filtered projects separately,
+// causing one filter to ignore the other. I fixed this by creating a shared
+// getFilteredProjects() function that checks both the search query and selected
+// year, allowing both filters to work together.
