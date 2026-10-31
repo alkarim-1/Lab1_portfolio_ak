@@ -20,55 +20,55 @@
   },
   {
     "title": "Reddit Data Analysis",
-    "year": 2026,
+    "year": 2025,
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
     "description": "Explored Reddit data using distributed machine learning and data analysis techniques."
   },
   {
     "title": "MNIST Machine Learning",
-    "year": 2026,
+    "year": 2024,
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
     "description": "Implemented machine learning models for handwritten digit classification using the MNIST dataset."
   },
   {
     "title": "Apache Spark Data Management",
-    "year": 2026,
+    "year": 2023,
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
     "description": "Applied Apache Spark and distributed data processing techniques to analyze large datasets."
   },
   {
     "title": "Placeholder Project 7",
-    "year": 2025,
+    "year": 2021,
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
     "description": "Placeholder for a future data science or analytics project."
   },
   {
     "title": "Placeholder Project 8",
-    "year": 2025,
+    "year": 2020,
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
     "description": "Placeholder for a future machine learning project."
   },
   {
     "title": "Placeholder Project 9",
-    "year": 2024,
+    "year": 2018,
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
     "description": "Placeholder for a future data visualization project."
   },
   {
     "title": "Placeholder Project 10",
-    "year": 2024,
+    "year": 2016,
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
     "description": "Placeholder for a future software development project."
   },
   {
     "title": "Placeholder Project 11",
-    "year": 2023,
+    "year": 2018,
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
     "description": "Placeholder for a future research or analytics project."
   },
   {
     "title": "Placeholder Project 12",
-    "year": 2023,
+    "year": 2014,
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
     "description": "Placeholder for a future technical project."
   }
