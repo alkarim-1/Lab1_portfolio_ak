@@ -269,3 +269,29 @@ form {
     border-radius: 0.5em;
     font: inherit;
 }
+
+
+/* Lab 5 - Step 5.1: Hover Effect */
+
+#projects-plot {
+    &:has(path:hover) {
+        path:not(:hover) {
+            opacity: 0.5;
+        }
+    }
+
+    path {
+        transition: 300ms;
+        cursor: pointer;
+    }
+}
+
+/* Lab 5 - Step 5.2: Selected Wedge */
+
+.selected {
+    --color: oklch(60% 0.25 0) !important;
+}
+
+#projects-plot path.selected {
+    fill: var(--color);
+}

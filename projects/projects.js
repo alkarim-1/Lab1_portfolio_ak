@@ -27,8 +27,11 @@ if (projectsTitle && Array.isArray(projects)) {
 
 //// Lab 5 - Step 1.4: Static Pie Chart
 
-
+// Lab 5 - Step 5.2: Track selected wedge
+let selectedIndex = -1;
 function renderPieChart(projectsGiven) {
+    
+    selectedIndex = -1;
 
     let rolledData = d3.rollups(
         projectsGiven,
@@ -55,12 +58,34 @@ function renderPieChart(projectsGiven) {
     d3.select('.legend').selectAll('li').remove();
 
     // Draw pie chart
-    arcs.forEach((arc, idx) => {
-        d3.select('#projects-plot')
-            .append('path')
-            .attr('d', arc)
-            .attr('fill', colors(idx));
-    });
+    // Draw pie chart with click selection
+let svg = d3.select('#projects-plot');
+
+arcs.forEach((arc, idx) => {
+    svg.append('path')
+        .attr('d', arc)
+        .attr('fill', colors(idx))
+        .on('click', () => {
+
+            // Select or deselect the wedge
+            selectedIndex = selectedIndex === idx ? -1 : idx;
+
+            // Highlight the selected wedge
+            svg.selectAll('path')
+                .attr('class', (_, i) =>
+                    i === selectedIndex ? 'selected' : ''
+                );
+
+            // Highlight the matching legend item
+            d3.select('.legend')
+                .selectAll('li')
+                .attr('class', (_, i) =>
+                    i === selectedIndex
+                        ? 'legend-item selected'
+                        : 'legend-item'
+                );
+        });
+});
 
     // Draw legend
     let legend = d3.select('.legend');
