@@ -66,17 +66,21 @@ arcs.forEach((arc, idx) => {
         .attr('d', arc)
         .attr('fill', colors(idx))
         .on('click', () => {
-
             // Select or deselect the wedge
             selectedIndex = selectedIndex === idx ? -1 : idx;
 
-            // Highlight the selected wedge
+            // Find the year represented by the selected slice
+            selectedYear = selectedIndex === -1
+                ? null
+                : arcData[idx].data.label;
+
+            // Highlight selected wedge
             svg.selectAll('path')
                 .attr('class', (_, i) =>
                     i === selectedIndex ? 'selected' : ''
                 );
 
-            // Highlight the matching legend item
+            // Highlight matching legend item
             d3.select('.legend')
                 .selectAll('li')
                 .attr('class', (_, i) =>
@@ -84,6 +88,9 @@ arcs.forEach((arc, idx) => {
                         ? 'legend-item selected'
                         : 'legend-item'
                 );
+
+            // Update project cards using both filters
+            updateProjects();
         });
 });
 
@@ -106,18 +113,46 @@ arcs.forEach((arc, idx) => {
 renderPieChart(projects);
 
 
-// Lab 5 - Step 4.3: Improved Search
+// Lab 5 - Steps 5.3 and 5.4: Combined Filtering
+
 let query = '';
+let selectedYear = null;
+
+function getFilteredProjects() {
+    return projects.filter((project) => {
+        let values = Object.values(project)
+            .join('\n')
+            .toLowerCase();
+
+        let matchesSearch = values.includes(query.toLowerCase());
+
+        let matchesYear =
+            selectedYear === null ||
+            String(project.year) === String(selectedYear);
+
+        return matchesSearch && matchesYear;
+    });
+}
+
+function updateProjects() {
+    let filteredProjects = getFilteredProjects();
+    renderProjects(filteredProjects, projectsContainer, 'h2');
+}
+
+// Lab 5 - Step 5.4: Combined Search and Year Filtering
+
 let searchInput = document.querySelector('.searchBar');
 
 searchInput.addEventListener('input', (event) => {
     query = event.target.value;
 
-    let filteredProjects = projects.filter((project) => {
-        let values = Object.values(project).join('\n').toLowerCase();
-        return values.includes(query.toLowerCase());
-    });
+    // Reset year selection when search changes
+    selectedYear = null;
+    selectedIndex = -1;
 
-    renderProjects(filteredProjects, projectsContainer, 'h2');
-    renderPieChart(filteredProjects);
+    // Apply the search filter
+    updateProjects();
+
+    // Update chart and legend to reflect search results
+    renderPieChart(getFilteredProjects());
 });
