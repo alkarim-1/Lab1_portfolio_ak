@@ -27,15 +27,19 @@ if (projectsTitle && Array.isArray(projects)) {
 
 //// Lab 5 - Step 1.4: Static Pie Chart
 
-// Our two data values
-let data = [
-  { value: 1, label: 'apples' },
-  { value: 2, label: 'oranges' },
-  { value: 3, label: 'mangos' },
-  { value: 4, label: 'pears' },
-  { value: 5, label: 'limes' },
-  { value: 5, label: 'cherries' },
-];
+////Step 3.1: Projects Per Year
+let rolledData = d3.rollups(
+    projects,
+    (v) => v.length,
+    (d) => d.year,
+);
+
+// Convert grouped data into pie chart format
+let data = rolledData.map(([year, count]) => {
+    return { value: count, label: year };
+});
+
+console.log("Projects per year:", data);
 
 
 // Create the arc generator
