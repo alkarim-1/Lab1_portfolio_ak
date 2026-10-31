@@ -28,7 +28,7 @@ if (projectsTitle && Array.isArray(projects)) {
 //// Lab 5 - Step 1.4: Static Pie Chart
 
 // Our two data values
-let data = [1, 2];
+let data = [1, 2, 3, 4, 5, 5];
 
 // Create the arc generator
 let arcGenerator = d3.arc()
@@ -43,12 +43,12 @@ let arcData = sliceGenerator(data);
 let arcs = arcData.map((d) => arcGenerator(d));
 
 // Assign colors to each slice
-let colors = ['gold', 'purple'];
+let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
 // Draw the slices inside our SVG
 arcs.forEach((arc, idx) => {
     d3.select('#projects-plot')
         .append('path')
         .attr('d', arc)
-        .attr('fill', colors[idx]);
+        .attr('fill', colors(idx));
 });
