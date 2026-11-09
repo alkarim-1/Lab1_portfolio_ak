@@ -85,8 +85,98 @@ function renderCommitInfo(data, commits) {
     dl.append('dd').text(maxDepth ?? 'N/A');
 }
 
+
+// Step 2: Scatterplot of commits by date and time
+function renderScatterPlot(data, commits) {
+    // Step 2.1: Chart dimensions
+    const width = 1000;
+    const height = 600;
+
+    // Step 2.2: Margins for axes
+    const margin = { top: 10, right: 10, bottom: 30, left: 50 };
+
+    const usableArea = {
+        top: margin.top,
+        right: width - margin.right,
+        bottom: height - margin.bottom,
+        left: margin.left,
+        width: width - margin.left - margin.right,
+        height: height - margin.top - margin.bottom,
+    };
+
+    // Remove an existing plot before creating a new one
+    d3.select('#chart').selectAll('*').remove();
+
+    // Create SVG
+    const svg = d3
+        .select('#chart')
+        .append('svg')
+        .attr('viewBox', `0 0 ${width} ${height}`)
+        .style('overflow', 'visible');
+
+    // Create X and Y scales
+    const xScale = d3
+        .scaleTime()
+        .domain(d3.extent(commits, d => d.datetime))
+        .range([usableArea.left, usableArea.right])
+        .nice();
+
+    const yScale = d3
+        .scaleLinear()
+        .domain([0, 24])
+        .range([usableArea.bottom, usableArea.top]);
+
+    // Step 2.3: Add horizontal gridlines
+    const gridlines = svg
+        .append('g')
+        .attr('class', 'gridlines')
+        .attr('transform', `translate(${usableArea.left}, 0)`);
+
+    gridlines.call(
+        d3.axisLeft(yScale)
+            .tickFormat('')
+            .tickSize(-usableArea.width)
+    );
+
+    // Draw commit dots
+    const dots = svg.append('g').attr('class', 'dots');
+
+    dots
+        .selectAll('circle')
+        .data(commits)
+        .join('circle')
+        .attr('cx', d => xScale(d.datetime))
+        .attr('cy', d => yScale(d.hourFrac))
+        .attr('r', 5)
+        .attr('fill', 'steelblue');
+
+    // Create axes
+    const xAxis = d3.axisBottom(xScale);
+
+    const yAxis = d3
+        .axisLeft(yScale)
+        .tickFormat(d => String(d % 24).padStart(2, '0') + ':00');
+
+    // Add X axis
+    svg
+        .append('g')
+        .attr('transform', `translate(0, ${usableArea.bottom})`)
+        .call(xAxis);
+
+    // Add Y axis
+    svg
+        .append('g')
+        .attr('transform', `translate(${usableArea.left}, 0)`)
+        .call(yAxis);
+}
+
+
+// Load and process data
 let data = await loadData();
 let commits = processCommits(data);
 
-// Display the statistics on the Meta page
+// Step 1.3: Display statistics
 renderCommitInfo(data, commits);
+
+// Step 2: Display scatterplot
+renderScatterPlot(data, commits);

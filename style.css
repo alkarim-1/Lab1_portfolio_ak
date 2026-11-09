@@ -320,3 +320,37 @@ dl.stats dd {
     font-weight: bold;
 }
 
+/* Step 2.3: Scatterplot styling */
+#chart {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+#chart svg {
+    width: 100%;
+    height: auto;
+}
+
+.gridlines line {
+    stroke: #888;
+    stroke-opacity: 0.2;
+}
+
+.gridlines path {
+    display: none;
+}
+
+.gridlines text {
+    display: none;
+}
+
+/* Axes on dark background */
+#chart .domain,
+#chart .tick line {
+    stroke: #aaa;
+}
+
+#chart .tick text {
+    fill: #ccc;
+    font-size: 12px;
+}
