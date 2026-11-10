@@ -139,6 +139,21 @@ function renderScatterPlot(data, commits) {
     );
 
     // Draw commit dots
+    
+    // Step 2.3: Color commits by time of day
+    const getTimeColor = (hour) => {
+        if (hour >= 6 && hour < 12) {
+            return '#F4A261'; // Morning - light orange
+        } else if (hour >= 12 && hour < 18) {
+            return '#E76F51'; // Afternoon - darker orange
+        } else if (hour >= 18 && hour < 22) {
+            return '#457B9D'; // Evening - blue
+        } else {
+            return '#264653'; // Night - dark blue
+        }
+    };
+
+    // Draw commit dots
     const dots = svg.append('g').attr('class', 'dots');
 
     dots
@@ -148,7 +163,8 @@ function renderScatterPlot(data, commits) {
         .attr('cx', d => xScale(d.datetime))
         .attr('cy', d => yScale(d.hourFrac))
         .attr('r', 5)
-        .attr('fill', 'steelblue');
+        .attr('fill', d => getTimeColor(d.hourFrac));
+
 
     // Create axes
     const xAxis = d3.axisBottom(xScale);
