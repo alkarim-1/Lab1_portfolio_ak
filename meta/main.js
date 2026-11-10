@@ -125,6 +125,14 @@ function renderScatterPlot(data, commits) {
         .scaleLinear()
         .domain([0, 24])
         .range([usableArea.bottom, usableArea.top]);
+    
+    // Step 4.1–4.2: Scale dot sizes based on lines edited
+    const [minLines, maxLines] = d3.extent(commits, d => d.totalLines);
+
+    const rScale = d3
+        .scaleSqrt()
+        .domain([minLines, maxLines])
+        .range([2, 30]);
 
     // Step 2.3: Add horizontal gridlines
     const gridlines = svg
@@ -156,26 +164,36 @@ function renderScatterPlot(data, commits) {
     // Draw commit dots
     const dots = svg.append('g').attr('class', 'dots');
 
+    // Step 4.3: Sort largest commits first
+    const sortedCommits = d3.sort(commits, d => -d.totalLines);
+
+    // Draw commit dots
     dots
         .selectAll('circle')
-        .data(commits)
+        .data(sortedCommits)
         .join('circle')
         .attr('cx', d => xScale(d.datetime))
         .attr('cy', d => yScale(d.hourFrac))
-        .attr('r', 5)
+        .attr('r', d => rScale(d.totalLines))
         .attr('fill', d => getTimeColor(d.hourFrac))
+        .style('fill-opacity', 0.7)
         .on('mouseenter', (event, commit) => {
+            d3.select(event.currentTarget)
+                .style('fill-opacity', 1);
+
             renderTooltipContent(commit);
             updateTooltipVisibility(true);
             updateTooltipPosition(event);
         })
-        .on('mousemove', (event) => {
+        .on('mousemove', event => {
             updateTooltipPosition(event);
         })
-        .on('mouseleave', () => {
+        .on('mouseleave', event => {
+            d3.select(event.currentTarget)
+                .style('fill-opacity', 0.7);
+
             updateTooltipVisibility(false);
         });
-
 
     // Create axes
     const xAxis = d3.axisBottom(xScale);
