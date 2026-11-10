@@ -352,3 +352,63 @@ dl.stats dd {
     fill: currentColor;
     font-size: 12px;
 }
+
+/* Step 3.1: Tooltip information layout */
+dl.info {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.4rem 1rem;
+    margin: 0;
+}
+
+dl.info dt {
+    font-size: 0.85rem;
+    color: #999;
+    font-weight: 500;
+}
+
+dl.info dd {
+    margin: 0;
+    font-size: 0.9rem;
+    overflow-wrap: anywhere;
+}
+
+/* Step 3.2: Tooltip styling */
+.tooltip {
+    position: fixed;
+    top: 1em;
+    left: 1em;
+    z-index: 1000;
+
+    background: Canvas;
+    color: CanvasText;
+    border: 1px solid #666;
+    border-radius: 0.6rem;
+    padding: 1rem;
+
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    max-width: 280px;
+    pointer-events: none;
+}
+
+/* Step 3.3: Tooltip visibility */
+dl.info {
+    transition-duration: 500ms;
+    transition-property: opacity, visibility;
+}
+
+dl.info[hidden] {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Step 3.1: Dot hover animation */
+#chart circle {
+    transition: 200ms;
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
+#chart circle:hover {
+    transform: scale(1.5);
+}

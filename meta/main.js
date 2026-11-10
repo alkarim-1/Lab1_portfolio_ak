@@ -163,7 +163,18 @@ function renderScatterPlot(data, commits) {
         .attr('cx', d => xScale(d.datetime))
         .attr('cy', d => yScale(d.hourFrac))
         .attr('r', 5)
-        .attr('fill', d => getTimeColor(d.hourFrac));
+        .attr('fill', d => getTimeColor(d.hourFrac))
+        .on('mouseenter', (event, commit) => {
+            renderTooltipContent(commit);
+            updateTooltipVisibility(true);
+            updateTooltipPosition(event);
+        })
+        .on('mousemove', (event) => {
+            updateTooltipPosition(event);
+        })
+        .on('mouseleave', () => {
+            updateTooltipVisibility(false);
+        });
 
 
     // Create axes
@@ -193,6 +204,47 @@ let commits = processCommits(data);
 
 // Step 1.3: Display statistics
 renderCommitInfo(data, commits);
+
+
+// Step 3.1: Update tooltip content
+function renderTooltipContent(commit) {
+    if (!commit || Object.keys(commit).length === 0) return;
+
+    const link = document.getElementById('commit-link');
+    const date = document.getElementById('commit-date');
+    const time = document.getElementById('commit-time');
+    const author = document.getElementById('commit-author');
+    const lines = document.getElementById('commit-lines');
+
+    link.href = commit.url;
+    link.textContent = commit.id.substring(0, 7);
+
+    date.textContent = commit.datetime.toLocaleDateString('en', {
+        dateStyle: 'full',
+    });
+
+    time.textContent = commit.datetime.toLocaleTimeString('en', {
+        timeStyle: 'short',
+    });
+
+    author.textContent = commit.author;
+    lines.textContent = commit.totalLines;
+}
+
+// Step 3.3: Show or hide the tooltip
+function updateTooltipVisibility(isVisible) {
+    const tooltip = document.getElementById('commit-tooltip');
+    tooltip.hidden = !isVisible;
+}
+
+// Step 3.4: Position tooltip near cursor
+function updateTooltipPosition(event) {
+    const tooltip = document.getElementById('commit-tooltip');
+
+    tooltip.style.left = `${event.clientX + 15}px`;
+    tooltip.style.top = `${event.clientY + 15}px`;
+}
+
 
 // Step 2: Display scatterplot
 renderScatterPlot(data, commits);
