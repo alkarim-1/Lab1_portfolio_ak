@@ -331,26 +331,24 @@ dl.stats dd {
     height: auto;
 }
 
-.gridlines line {
-    stroke: #888;
+/* Subtle horizontal gridlines */
+#chart .gridlines line {
+    stroke: currentColor;
     stroke-opacity: 0.2;
 }
 
-.gridlines path {
+#chart .gridlines path {
     display: none;
 }
 
-.gridlines text {
-    display: none;
-}
-
-/* Axes on dark background */
+/* Axes adjust to light and dark mode */
 #chart .domain,
 #chart .tick line {
-    stroke: #aaa;
+    stroke: currentColor;
+    stroke-opacity: 0.6;
 }
 
 #chart .tick text {
-    fill: #ccc;
+    fill: currentColor;
     font-size: 12px;
 }

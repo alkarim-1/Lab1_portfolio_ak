@@ -124,7 +124,7 @@ function renderScatterPlot(data, commits) {
     const yScale = d3
         .scaleLinear()
         .domain([0, 24])
-        .range([usableArea.bottom, usableArea.top]);
+        .range([usableArea.top, usableArea.bottom]);
 
     // Step 2.3: Add horizontal gridlines
     const gridlines = svg
