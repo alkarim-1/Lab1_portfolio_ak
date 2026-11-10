@@ -1,6 +1,10 @@
 
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
 
+// Step 5.4: Scales shared with brushing functions
+let xScale;
+let yScale;
+
 // Load and convert CSV data
 async function loadData() {
     const data = await d3.csv('loc.csv', (row) => ({
@@ -115,13 +119,13 @@ function renderScatterPlot(data, commits) {
         .style('overflow', 'visible');
 
     // Create X and Y scales
-    const xScale = d3
+    xScale = d3
         .scaleTime()
         .domain(d3.extent(commits, d => d.datetime))
         .range([usableArea.left, usableArea.right])
         .nice();
 
-    const yScale = d3
+    yScale = d3
         .scaleLinear()
         .domain([0, 24])
         .range([usableArea.bottom, usableArea.top]);
@@ -213,6 +217,22 @@ function renderScatterPlot(data, commits) {
         .append('g')
         .attr('transform', `translate(${usableArea.left}, 0)`)
         .call(yAxis);
+
+    
+    // Step 5.1–5.4: Create interactive brush
+    const brush = d3
+        .brush()
+        .extent([
+            [usableArea.left, usableArea.top],
+            [usableArea.right, usableArea.bottom]
+        ])
+        .on('start brush end', brushed);
+
+    svg.call(brush);
+
+    // Step 5.2: Keep dots interactive above brush overlay
+    svg.selectAll('.dots, .overlay ~ *').raise();
+
 }
 
 
@@ -263,6 +283,82 @@ function updateTooltipPosition(event) {
     tooltip.style.top = `${event.clientY + 15}px`;
 }
 
+
+// Step 5.4: Check whether a commit is inside the brush selection
+function isCommitSelected(selection, commit) {
+    if (!selection) {
+        return false;
+    }
+
+    const [[x0, y0], [x1, y1]] = selection;
+
+    const x = xScale(commit.datetime);
+    const y = yScale(commit.hourFrac);
+
+    return x >= x0 && x <= x1 && y >= y0 && y <= y1;
+}
+
+// Step 5.5: Display number of selected commits
+function renderSelectionCount(selection) {
+    const selectedCommits = selection
+        ? commits.filter(d => isCommitSelected(selection, d))
+        : [];
+
+    const countElement = document.querySelector('#selection-count');
+
+    countElement.textContent =
+        `${selectedCommits.length || 'No'} commits selected`;
+
+    return selectedCommits;
+}
+
+// Step 5.6: Display language breakdown
+function renderLanguageBreakdown(selection) {
+    const selectedCommits = selection
+        ? commits.filter(d => isCommitSelected(selection, d))
+        : [];
+
+    const container = document.getElementById('language-breakdown');
+
+    if (selectedCommits.length === 0) {
+        container.innerHTML = '';
+        return;
+    }
+
+    const lines = selectedCommits.flatMap(d => d.lines);
+
+    const breakdown = d3.rollup(
+        lines,
+        v => v.length,
+        d => d.type
+    );
+
+    container.innerHTML = '';
+
+    for (const [language, count] of breakdown) {
+        const proportion = count / lines.length;
+        const formatted = d3.format('.1~%')(proportion);
+
+        const dt = document.createElement('dt');
+        dt.textContent = language;
+
+        const dd = document.createElement('dd');
+        dd.textContent = `${count} lines (${formatted})`;
+
+        container.append(dt, dd);
+    }
+}
+
+// Step 5.4: Handle brush selections
+function brushed(event) {
+    const selection = event.selection;
+
+    d3.selectAll('#chart .dots circle')
+        .classed('selected', d => isCommitSelected(selection, d));
+
+    renderSelectionCount(selection);
+    renderLanguageBreakdown(selection);
+}
 
 // Step 2: Display scatterplot
 renderScatterPlot(data, commits);
