@@ -72,4 +72,11 @@
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
     "description": "Placeholder for a future technical project."
   }
+  {
+    "title": "Bikewatching: Bluebikes Traffic Visualization",
+    "year": 2026,
+    "image": "/Lab1_portfolio_ak/images/bikewatching.png",
+    "url": "https://alkarim-1.github.io/bikesnthings/",
+    "description": "Built an interactive map of Boston-area bike traffic using Mapbox and D3.js. The visualization allows users to explore Bluebikes stations, filter trips by time of day, and compare station traffic through circle sizes and colors."
+  }
 ]
