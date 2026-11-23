@@ -585,7 +585,7 @@ dl.info[hidden] {
 }
 
 #scatter-story .step {
-    min-height: 75vh;
+    min-height: 45vh;
     padding: 1.5rem;
     margin-bottom: 1rem;
     box-sizing: border-box;
