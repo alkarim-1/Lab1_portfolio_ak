@@ -449,3 +449,185 @@ dl.info[hidden] {
     margin-top: 1rem;
 }
 
+
+/* ==========================================
+   LAB 8 - STEP 1: TIMELINE SLIDER
+========================================== */
+
+.timeline-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.timeline-controls label {
+    font-weight: 600;
+}
+
+#commit-progress {
+    flex: 1;
+    min-width: 150px;
+    cursor: pointer;
+}
+
+.timeline-controls time {
+    margin-left: auto;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Smooth transitions for commit circles */
+#chart .dots circle {
+    transition:
+        cx 200ms,
+        cy 200ms,
+        r 200ms,
+        fill-opacity 200ms;
+
+    cursor: pointer;
+}
+
+/* Animate new circles appearing */
+@starting-style {
+    #chart .dots circle {
+        r: 0;
+    }
+}
+
+
+/* ==========================================
+   LAB 8 - STEP 2: FILE VISUALIZATION
+========================================== */
+
+.file-section {
+    margin-top: 3rem;
+}
+
+#files {
+    display: grid;
+    grid-template-columns: minmax(140px, 1fr) 4fr;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+#files > .file-row {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #8884;
+}
+
+#files dt {
+    grid-column: 1;
+    overflow-wrap: anywhere;
+    min-width: 0;
+}
+
+#files dt code {
+    font-size: 0.85rem;
+}
+
+#files dt small {
+    display: block;
+    font-size: 0.75rem;
+    opacity: 0.65;
+    margin-top: 0.4rem;
+}
+
+#files dd {
+    grid-column: 2;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 0.15em;
+    margin: 0;
+    padding-top: 0.5rem;
+}
+
+#files .loc {
+    display: block;
+    width: 0.5em;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--color, steelblue);
+    flex-shrink: 0;
+}
+
+
+/* ==========================================
+   LAB 8 - STEP 3: SCROLLYTELLING
+========================================== */
+
+#scrolly-1 {
+    position: relative;
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+#scatter-story {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+}
+
+#scatter-plot {
+    position: sticky;
+    top: 1rem;
+    flex: 1.5;
+    min-width: 0;
+    height: 70vh;
+    overflow: visible;
+}
+
+#scatter-story .step {
+    min-height: 75vh;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+
+    border-left: 3px solid var(--color-accent);
+
+    background: color-mix(
+        in oklch,
+        var(--color-accent) 6%,
+        Canvas
+    );
+}
+
+#scatter-story .step h3 {
+    margin-top: 0;
+}
+
+#scatter-story .step p {
+    line-height: 1.7;
+}
+
+/* Responsive layouts */
+@media (max-width: 700px) {
+    #scrolly-1 {
+        gap: 0.75rem;
+    }
+
+    #scatter-story .step {
+        padding: 0.7rem;
+        font-size: 0.8rem;
+    }
+
+    #scatter-plot {
+        top: 0.5rem;
+        height: 55vh;
+    }
+
+    #files {
+        grid-template-columns: minmax(90px, 1fr) 3fr;
+    }
+
+    .timeline-controls time {
+        margin-left: 0;
+    }
+}

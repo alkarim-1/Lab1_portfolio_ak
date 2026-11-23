@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +7,6 @@
     <title>Meta - Code Analysis</title>
     <link rel="stylesheet" href="../style.css">
     <script type="module" src="../global.js"></script>
-
     <script type="module" src="main.js"></script>
 </head>
 <body>
@@ -16,29 +16,66 @@
         about the code used to build my website.
     </p>
 
+    <!-- Lab 8 Step 1: Timeline filtering -->
+    <div class="timeline-controls">
+        <label for="commit-progress">Show commits until:</label>
+        <input
+            type="range"
+            id="commit-progress"
+            min="0"
+            max="100"
+            value="100"
+            step="0.1"
+        >
+        <time id="commit-time"></time>
+    </div>
+
+    <!-- Existing commit statistics -->
     <div id="stats"></div>
+
     <h2>Commits by time of day</h2>
-    <div id="chart"></div>
 
-    <!-- Step 5.5: Selected commit count -->
-    <p id="selection-count">No commits selected</p>
+    <!-- Lab 8 Step 3: Scrollytelling -->
+    <div id="scrolly-1">
+        <div id="scatter-story"></div>
 
-    <!-- Step 5.6: Language breakdown -->
-    <h3>Language Breakdown</h3>
-    <dl id="language-breakdown" class="info"></dl>
+        <div id="scatter-plot">
+            <!-- Existing scatterplot -->
+            <div id="chart"></div>
 
-    <!-- Step 3: Commit tooltip -->
+            <!-- Existing brushing statistics -->
+            <p id="selection-count">No commits selected</p>
+
+            <h3>Language Breakdown</h3>
+            <dl id="language-breakdown" class="info"></dl>
+        </div>
+    </div>
+
+    <!-- Lab 8 Step 2: File visualization -->
+    <section class="file-section">
+        <h2>The Race for the Biggest File</h2>
+        <p>
+            Each dot represents a line of code.
+            Colors indicate different technologies,
+            and files are sorted by their line counts.
+        </p>
+        <dl id="files"></dl>
+    </section>
+
+    <!-- Existing commit tooltip -->
     <dl id="commit-tooltip" class="info tooltip" hidden>
         <dt>Commit</dt>
         <dd>
-            <a href="" id="commit-link" target="_blank" rel="noopener noreferrer"></a>
+            <a href="" id="commit-link"
+               target="_blank"
+               rel="noopener noreferrer"></a>
         </dd>
 
         <dt>Date</dt>
         <dd id="commit-date"></dd>
 
         <dt>Time</dt>
-        <dd id="commit-time"></dd>
+        <dd id="tooltip-commit-time"></dd>
 
         <dt>Author</dt>
         <dd id="commit-author"></dd>
