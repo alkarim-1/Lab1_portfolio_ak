@@ -585,7 +585,7 @@ dl.info[hidden] {
 }
 
 #scatter-story .step {
-    min-height: 45vh;
+    min-height: 40vh;
     padding: 1.5rem;
     margin-bottom: 1rem;
     box-sizing: border-box;
@@ -631,3 +631,86 @@ dl.info[hidden] {
         margin-left: 0;
     }
 }
+
+
+/* ==========================================
+   LAB 8 - IMPROVED SCROLLYTELLING LAYOUT
+========================================== */
+
+/* Give more space to the visualization */
+#scrolly-1 {
+    display: grid;
+    grid-template-columns: minmax(170px, 1fr) minmax(0, 3fr);
+    gap: 1rem;
+    align-items: start;
+}
+
+/* Narrower commit descriptions */
+#scatter-story {
+    min-width: 0;
+}
+
+/* Larger sticky graph area */
+#scatter-plot {
+    position: sticky;
+    top: 1rem;
+    min-width: 0;
+    height: auto;
+    min-height: 65vh;
+}
+
+/* Make the graph use all available space */
+#chart {
+    width: 100%;
+    margin-top: 0;
+}
+
+#chart svg {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+}
+
+/* Reduce empty space between commit descriptions */
+#scatter-story .step {
+    min-height: 40vh;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    box-sizing: border-box;
+}
+
+/* More compact description text */
+#scatter-story .step h3 {
+    font-size: 1.05rem;
+    margin: 0 0 0.75rem;
+}
+
+#scatter-story .step p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0.5rem 0;
+}
+
+/* Keep the page usable on small screens */
+@media (max-width: 700px) {
+    #scrolly-1 {
+        grid-template-columns: minmax(120px, 1fr) minmax(0, 2fr);
+        gap: 0.5rem;
+    }
+
+    #scatter-story .step {
+        padding: 0.65rem;
+        min-height: 50vh;
+    }
+
+    #scatter-story .step p {
+        font-size: 0.8rem;
+    }
+
+    #scatter-plot {
+        top: 0.5rem;
+        min-height: 50vh;
+    }
+}
+
